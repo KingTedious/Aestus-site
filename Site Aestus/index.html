@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aestus — Tecnologia com propósito social</title>
+    <meta name="description" content="A Aestus é uma organização criada por jovens que desenvolve projetos sociais e tecnológicos alinhados aos Objetivos de Desenvolvimento Sustentável da ONU.">
+    <meta name="theme-color" content="#e65c00">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Aestus — Tecnologia com propósito social">
+    <meta property="og:description" content="Uma organização jovem que cria projetos sociais e tecnológicos alinhados à Agenda 2030 da ONU.">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">AESTUS</a>
+
+            <button id="btn-menu" class="btn-menu" aria-label="Abrir menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="menu" id="menu">
+                <a href="#sobre">Quem Somos</a>
+                <a href="#projetos">Projetos</a>
+                <a href="#ods">Os ODS</a>
+                <a href="#proposito">Propósito</a>
+
+                <button id="btn-tema" class="btn-tema">🌙 Escuro</button>
+
+                <a href="#projetos" class="btn-jovem-connect">Nossos Projetos ↗</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-texto">
+            <span class="eyebrow">Organização jovem de inovação social</span>
+            <h1>Tecnologia com propósito social.</h1>
+            <p>A Aestus é uma organização criada por jovens que desenvolve projetos sociais e tecnológicos, cada um voltado a uma causa diferente, todos alinhados aos Objetivos de Desenvolvimento Sustentável da ONU.</p>
+            <div class="hero-ctas">
+                <a href="#projetos" class="btn-principal">Conheça nossos projetos</a>
+                <a href="#ods" class="btn-secundario">Nosso compromisso com os ODS</a>
+            </div>
+
+            <div class="hero-pilares">
+                <div class="pilar">
+                    <span class="pilar-icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>
+                    </span>
+                    <span>Tecnologia</span>
+                </div>
+                <div class="pilar">
+                    <span class="pilar-icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5 5 0 0 0-7.1 0L12 6.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 20.3l8.8-8.6a5 5 0 0 0 0-7.1Z"/></svg>
+                    </span>
+                    <span>Impacto Social</span>
+                </div>
+                <div class="pilar">
+                    <span class="pilar-icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+                    </span>
+                    <span>Juventude</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-ilustracao" aria-hidden="true">
+            <svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
+                <line x1="210" y1="150" x2="210" y2="55" stroke="var(--laranja-forte)" stroke-width="3" class="rede-linha rede-linha-1"/>
+                <line x1="210" y1="150" x2="322" y2="115" stroke="var(--borda)" stroke-width="3" stroke-dasharray="3 9" class="rede-linha rede-linha-2"/>
+                <line x1="210" y1="150" x2="322" y2="205" stroke="var(--borda)" stroke-width="3" stroke-dasharray="3 9" class="rede-linha rede-linha-3"/>
+                <line x1="210" y1="150" x2="98" y2="205" stroke="var(--borda)" stroke-width="3" stroke-dasharray="3 9" class="rede-linha rede-linha-4"/>
+
+                <circle cx="210" cy="150" r="34" fill="var(--laranja-forte)" class="rede-central"/>
+                <text x="210" y="155" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#fff">AESTUS</text>
+
+                <circle cx="210" cy="55" r="24" fill="var(--laranja-claro)" stroke="var(--laranja-forte)" stroke-width="3" class="rede-no"/>
+                <text x="210" y="59" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="8" font-weight="700" fill="var(--laranja-forte)">JOVEM</text>
+
+                <circle cx="322" cy="115" r="16" fill="none" stroke="var(--borda)" stroke-width="2.5" stroke-dasharray="2 5" class="rede-no"/>
+                <circle cx="322" cy="205" r="16" fill="none" stroke="var(--borda)" stroke-width="2.5" stroke-dasharray="2 5" class="rede-no"/>
+                <circle cx="98" cy="205" r="16" fill="none" stroke="var(--borda)" stroke-width="2.5" stroke-dasharray="2 5" class="rede-no"/>
+            </svg>
+        </div>
+    </div>
+
+    <section id="sobre" class="reveal">
+        <h2 class="section-title">Quem Somos</h2>
+        <p class="texto-centralizado">
+            Nascida no Colégio Cruzeiro do Sul (São Miguel Paulista), a <strong>Aestus</strong> é uma organização criada por jovens, para gerar impacto social por meio da tecnologia. Em vez de um único produto, a Aestus funciona como uma frente de projetos: cada iniciativa nasce para resolver um problema social específico, sempre com tecnologia como ferramenta e os Objetivos de Desenvolvimento Sustentável da ONU como referência.
+        </p>
+    </section>
+
+    <section id="projetos" class="secao-destaque reveal">
+        <h2 class="section-title">Nossos Projetos</h2>
+        <p class="texto-centralizado">
+            Cada projeto da Aestus nasce para atacar uma causa social específica. Hoje, nossa frente ativa é a seguinte — e novas iniciativas estão a caminho.
+        </p>
+        <div class="grid-cards">
+            <div class="card card-projeto">
+                <span class="projeto-status ativo">Projeto ativo</span>
+                <h3>JovemConnect</h3>
+                <p>Plataforma que conecta jovens em busca da primeira oportunidade profissional a empresas parceiras, com apoio na criação de currículo e preparação para processos seletivos.</p>
+                <a href="https://localhost/" target="_blank" class="link-projeto">Acessar projeto ↗</a>
+            </div>
+            <div class="card card-projeto card-projeto-futuro">
+                <span class="projeto-status futuro">Em desenvolvimento</span>
+                <h3>Novo projeto</h3>
+                <p>Estamos estruturando a próxima iniciativa da Aestus. Assim como o JovemConnect, ela vai nascer conectada a um ou mais Objetivos de Desenvolvimento Sustentável.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="ods" class="reveal">
+        <h2 class="section-title">Nosso Compromisso com os ODS</h2>
+        <p class="texto-centralizado">
+            Os <strong>Objetivos de Desenvolvimento Sustentável (ODS)</strong> são 17 metas globais definidas pela ONU em 2015, que compõem a Agenda 2030 — um plano assinado por 193 países para erradicar a pobreza, reduzir desigualdades e garantir um futuro mais sustentável para todos.
+        </p>
+        <p class="texto-centralizado">
+            Na Aestus, os ODS não são um selo institucional: são o ponto de partida de cada projeto. Antes de desenvolver qualquer solução, perguntamos a qual desses 17 objetivos ela responde — e é esse objetivo que guia as decisões do time até a entrega final.
+        </p>
+
+        <div class="ods-mapa" role="list" aria-label="Os 17 Objetivos de Desenvolvimento Sustentável da ONU">
+            <span class="ods-item" role="listitem">1</span>
+            <span class="ods-item" role="listitem">2</span>
+            <span class="ods-item" role="listitem">3</span>
+            <span class="ods-item" role="listitem">4</span>
+            <span class="ods-item" role="listitem">5</span>
+            <span class="ods-item" role="listitem">6</span>
+            <span class="ods-item" role="listitem">7</span>
+            <span class="ods-item" role="listitem">8</span>
+            <span class="ods-item" role="listitem">9</span>
+            <span class="ods-item" role="listitem">10</span>
+            <span class="ods-item" role="listitem">11</span>
+            <span class="ods-item" role="listitem">12</span>
+            <span class="ods-item" role="listitem">13</span>
+            <span class="ods-item" role="listitem">14</span>
+            <span class="ods-item" role="listitem">15</span>
+            <span class="ods-item" role="listitem">16</span>
+            <span class="ods-item" role="listitem">17</span>
+        </div>
+        <p class="ods-mapa-legenda">Cada projeto Aestus se conecta a um ou mais desses 17 objetivos.</p>
+    </section>
+
+    <section id="proposito" class="secao-destaque reveal">
+        <h2 class="section-title">Nossa Identidade</h2>
+        <div class="grid-cards">
+            <div class="card">
+                <div class="card-icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg>
+                </div>
+                <h3>Nosso Objetivo</h3>
+                <p>Criar soluções tecnológicas para problemas sociais reais, usando os Objetivos de Desenvolvimento Sustentável da ONU como bússola para escolher onde e como agir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 7v5c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V7l-8-4Z"/></svg>
+                </div>
+                <h3>Nossa Missão</h3>
+                <p>Mobilizar talento jovem para transformar causas sociais em projetos concretos, entregando tecnologia que gera impacto mensurável para as comunidades que atende.</p>
+            </div>
+            <div class="card">
+                <div class="card-icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <h3>Nossa Visão</h3>
+                <p>Ser reconhecida como uma organização de referência em inovação social liderada por jovens, com um portfólio de projetos que cobre múltiplos Objetivos de Desenvolvimento Sustentável.</p>
+            </div>
+            <div class="card">
+                <div class="card-icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.828 13.07A3 3 0 0 1 12 8.764a3 3 0 0 1 5.004 2.224 3 3 0 0 1-.832 2.083l-3.447 3.62a1 1 0 0 1-1.45-.001z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <h3>Nossos Valores</h3>
+                <p>Nossos valores promovem a inclusão e a igualdade, garantindo acessibilidade para todos e incentivando a inovação para construir um futuro mais justo, diverso e transformador.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h2>AESTUS</h2>
+        <p>Criando oportunidades. Transformando futuros.</p>
+        <div class="creditos">
+            <p><strong>Desenvolvido por:</strong> Cauã Aguiar, Enzo Sipriano, Esequiel Wolff, Gabriel Sassati, Leonardo de Matos, Markus Pereira, Paola Restiffe, Renato Braga e Vitor Hugo.</p>
+            <p>Trabalho de Conclusão de Curso — Colégio Cruzeiro do Sul | São Miguel Paulista, SP</p>
+        </div>
+    </footer>
+
+    <script src="darkmode.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
