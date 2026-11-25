@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Política de Privacidade | Aestus</title>
+    <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="stylesheet" href="style.css">
+    <!-- tema e acessibilidade salvos são aplicados antes de a página aparecer (sem "piscar") -->
+    <script src="darkmode.js"></script>
+    <script src="acessibilidade.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img class="logo-claro" src="img/logo-aestus.png" alt="Aestus — voltar ao site" width="437" height="168">
+                <img class="logo-escuro" src="img/logo-aestus-escuro.png" alt="Aestus — voltar ao site" width="437" height="168">
+            </a>
+            <div class="menu" id="menu" style="max-height:none;position:static;flex-direction:row;background:none;box-shadow:none;padding:0;">
+                <a href="index.html">← Voltar ao site</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="legal-page">
+        <h1>Política de Privacidade</h1>
+        <p class="legal-sub">Como este site trata dados, conforme a LGPD (Lei nº 13.709/2018).</p>
+        <p class="legal-data">Última atualização: 4 de outubro de 2026</p>
+        <h2>1. Não pedimos cadastro</h2>
+        <p>O site institucional da Aestus não tem login nem formulários. Não coletamos nome, CPF nem outros dados pessoais por aqui.</p>
+        <h2>2. O que fica no seu navegador</h2>
+        <p>Guardamos no seu aparelho apenas suas preferências de tema (claro ou escuro) e de acessibilidade, para lembrá-las na próxima visita. Esses dados não são enviados a nenhum servidor nem usados para publicidade.</p>
+        <h2>3. Fontes do Google</h2>
+        <p>O site carrega fontes do Google Fonts. Ao abrir a página, seu navegador faz uma requisição aos servidores do Google, que podem registrar dados técnicos, como o endereço IP.</p>
+        <h2>4. Contato por e-mail</h2>
+        <p>Se você escrever para startupaestus@gmail.com, usaremos seu e-mail e sua mensagem só para responder. Você pode pedir a exclusão a qualquer momento.</p>
+        <h2>5. JovemConnect</h2>
+        <p>O JovemConnect coleta dados de cadastro e tem política própria, mais detalhada. Leia-a antes de criar uma conta.</p>
+        <h2>6. Seus direitos</h2>
+        <p>Pela LGPD, você pode pedir acesso, correção ou exclusão de dados, além de informações sobre o tratamento. Escreva para startupaestus@gmail.com.</p>
+        <h2>7. Alterações</h2>
+        <p>Esta política pode mudar. A data da última atualização fica no topo da página.</p>
+        <p class="legal-aviso">Modelo informativo elaborado pela equipe do projeto. Recomendamos revisão por um profissional jurídico antes de uso em produção.</p>
+    </main>
+
+    <footer>
+        <h2 class="footer-logo"><img src="img/logo-aestus-branco.png" alt="Aestus" width="430" height="108"></h2>
+        <p>Criando oportunidades. Transformando futuros.</p>
+        <nav class="footer-links" aria-label="Links do rodapé">
+            <a href="termos.html">Termos de Uso</a>
+            <a href="privacidade.html">Política de Privacidade</a>
+            <a href="acessibilidade.html">Acessibilidade</a>
+            <a href="mailto:startupaestus@gmail.com">Contato</a>
+        </nav>
+        <p><a class="link-contato" href="mailto:startupaestus@gmail.com">✉ startupaestus@gmail.com</a></p>
+        <p class="footer-social">
+            <a class="btn-instagram" href="https://www.instagram.com/aestus_startup/" target="_blank" rel="noopener noreferrer" aria-label="Siga a Aestus no Instagram (abre em nova aba)">Siga a Aestus no Instagram ↗</a>
+        </p>
+        <div class="creditos">
+            <p>Trabalho de Conclusão de Curso — Colégio Cruzeiro do Sul | São Miguel Paulista, SP</p>
+            <p>© 2026 Aestus. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Painel de acessibilidade (o mesmo do site principal) -->
+    <button id="a11y-botao" class="a11y-botao" type="button" aria-label="Abrir opções de acessibilidade" aria-expanded="false" aria-controls="a11y-painel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"/><path d="M5 8.5l7 1.5 7-1.5M12 10v4.5M9 21l3-6.5 3 6.5"/></svg>
+    </button>
+    <div id="a11y-painel" class="a11y-painel" role="dialog" aria-label="Opções de acessibilidade" hidden>
+        <div class="a11y-topo">
+            <h2>Acessibilidade</h2>
+            <button id="a11y-fechar" class="a11y-fechar" type="button" aria-label="Fechar">✕</button>
+        </div>
+
+        <div class="a11y-linha">
+            <span>Tamanho do texto</span>
+            <div class="a11y-fonte">
+                <button id="a11y-menos" type="button" aria-label="Diminuir texto">A−</button>
+                <output id="a11y-fonte-valor" aria-live="polite">100%</output>
+                <button id="a11y-mais" type="button" aria-label="Aumentar texto">A+</button>
+            </div>
+        </div>
+
+        <!-- Cada interruptor tem data-a11y="nome-da-opção": é assim que o JS sabe qual
+             opção ele controla, sem precisar de um código para cada um. -->
+        <label class="a11y-linha">Alto contraste
+            <input type="checkbox" data-a11y="contraste"><span class="a11y-chave"></span>
+        </label>
+        <label class="a11y-linha">Tons de cinza
+            <input type="checkbox" data-a11y="cinza"><span class="a11y-chave"></span>
+        </label>
+        <label class="a11y-linha">Fonte para dislexia
+            <input type="checkbox" data-a11y="dislexia"><span class="a11y-chave"></span>
+        </label>
+        <label class="a11y-linha">Destacar links
+            <input type="checkbox" data-a11y="links"><span class="a11y-chave"></span>
+        </label>
+        <label class="a11y-linha">Parar animações
+            <input type="checkbox" data-a11y="animacoes"><span class="a11y-chave"></span>
+        </label>
+
+        <div class="a11y-linha a11y-coluna">
+            <label for="a11y-daltonismo">Filtro de daltonismo</label>
+            <select id="a11y-daltonismo">
+                <option value="">Nenhum</option>
+                <option value="protanopia">Protanopia</option>
+                <option value="deuteranopia">Deuteranopia</option>
+                <option value="tritanopia">Tritanopia</option>
+            </select>
+        </div>
+
+        <button id="a11y-reset" class="a11y-reset" type="button">Restaurar padrão</button>
+    </div>
+
+    <!-- Filtros de daltonismo: um SVG invisível (0x0) que só guarda as "receitas" de cor.
+         O JS os ativa com filter: url(#a11y-...). Cada feColorMatrix recalcula as cores
+         para simular/compensar o tipo de daltonismo. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <filter id="a11y-protanopia"><feColorMatrix type="matrix" values="0.567 0.433 0 0 0  0.558 0.442 0 0 0  0 0.242 0.758 0 0  0 0 0 1 0"/></filter>
+            <filter id="a11y-deuteranopia"><feColorMatrix type="matrix" values="0.625 0.375 0 0 0  0.7 0.3 0 0 0  0 0.3 0.7 0 0  0 0 0 1 0"/></filter>
+            <filter id="a11y-tritanopia"><feColorMatrix type="matrix" values="0.95 0.05 0 0 0  0 0.433 0.567 0 0  0 0.475 0.525 0 0  0 0 0 1 0"/></filter>
+        </defs>
+    </svg>
+</body>
+</html>

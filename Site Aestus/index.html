@@ -5,35 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aestus — Tecnologia com propósito social</title>
     <meta name="description" content="A Aestus é uma organização criada por jovens que desenvolve projetos sociais e tecnológicos alinhados aos Objetivos de Desenvolvimento Sustentável da ONU.">
-    <meta name="theme-color" content="#e65c00">
+    <!-- Cor da barra do navegador no celular (laranja da marca). -->
+    <meta name="theme-color" content="#e24908">
 
+    <!-- Open Graph: título e descrição que aparecem quando o link do site é
+         compartilhado no WhatsApp, Instagram, LinkedIn etc. -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Aestus — Tecnologia com propósito social">
     <meta property="og:description" content="Uma organização jovem que cria projetos sociais e tecnológicos alinhados à Agenda 2030 da ONU.">
+    <!-- Imagem que aparece junto do link compartilhado. Quando o site estiver publicado,
+         troque pelo endereço completo (ex.: https://seusite.com.br/img/og-image.png):
+         WhatsApp, LinkedIn e Facebook só leem a imagem com o endereço completo. -->
+    <meta property="og:image" content="img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Logo da Aestus com a frase Tecnologia com propósito social">
 
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <!-- Ícone da aba do navegador (favicon) e do atalho na tela inicial do celular.
+         Os dois usam o símbolo da logo. -->
+    <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <!-- Fontes do Google: o preconnect abre a conexão antecipadamente para o
+         texto não demorar a aparecer com a fonte certa. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+    <!-- Todo o visual do site está no style.css. -->
     <link rel="stylesheet" href="style.css">
+    <!-- Estes dois scripts ficam no <head> de propósito: aplicam o tema escuro e as
+         preferências de acessibilidade antes da página aparecer, evitando o "piscar". -->
+    <script src="darkmode.js"></script>
+    <script src="acessibilidade.js"></script>
 </head>
 <body>
 
+    <!-- ============ CABEÇALHO: logo + menu (fixo no topo) ============ -->
     <header>
         <nav>
-            <a href="#" class="logo">AESTUS</a>
+            <!-- Logo: a versão com o nome laranja aparece no tema claro e a com o nome
+                 branco no tema escuro e no alto contraste (o CSS troca uma pela outra). -->
+            <a href="#" class="logo">
+                <img class="logo-claro" src="img/logo-aestus.png" alt="Aestus" width="437" height="168">
+                <img class="logo-escuro" src="img/logo-aestus-escuro.png" alt="Aestus" width="437" height="168">
+            </a>
 
+            <!-- Botão hambúrguer: só aparece no celular. O script.js abre/fecha o menu. -->
             <button id="btn-menu" class="btn-menu" aria-label="Abrir menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
 
             <div class="menu" id="menu">
+                <!-- Links com "#" rolam até a seção com o id correspondente. -->
                 <a href="#sobre">Quem Somos</a>
                 <a href="#projetos">Projetos</a>
                 <a href="#ods">Os ODS</a>
                 <a href="#proposito">Propósito</a>
+                <a href="#contato">Contato</a>
 
+                <!-- Alterna claro/escuro. O texto do botão é trocado pelo script.js. -->
                 <button id="btn-tema" class="btn-tema">🌙 Escuro</button>
 
                 <a href="#projetos" class="btn-jovem-connect">Nossos Projetos ↗</a>
@@ -41,6 +71,8 @@
         </nav>
     </header>
 
+    <!-- ============ HERO: a primeira coisa que a pessoa vê ============
+         Texto + botões à esquerda, ilustração à direita. -->
     <div class="hero">
         <div class="hero-texto">
             <span class="eyebrow">Organização jovem de inovação social</span>
@@ -51,6 +83,8 @@
                 <a href="#ods" class="btn-secundario">Nosso compromisso com os ODS</a>
             </div>
 
+            <!-- Os 3 pilares da Aestus, com ícones SVG desenhados direto no código
+                 (não precisam de imagem externa e acompanham a cor do texto). -->
             <div class="hero-pilares">
                 <div class="pilar">
                     <span class="pilar-icone" aria-hidden="true">
@@ -73,6 +107,9 @@
             </div>
         </div>
 
+        <!-- Ilustração da "rede": a Aestus no centro conectada aos projetos.
+             aria-hidden esconde do leitor de tela, pois é só decorativa. As linhas
+             são animadas pelo CSS (classes rede-*). -->
         <div class="hero-ilustracao" aria-hidden="true">
             <svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
                 <line x1="210" y1="150" x2="210" y2="55" stroke="var(--laranja-forte)" stroke-width="3" class="rede-linha rede-linha-1"/>
@@ -80,8 +117,8 @@
                 <line x1="210" y1="150" x2="322" y2="205" stroke="var(--borda)" stroke-width="3" stroke-dasharray="3 9" class="rede-linha rede-linha-3"/>
                 <line x1="210" y1="150" x2="98" y2="205" stroke="var(--borda)" stroke-width="3" stroke-dasharray="3 9" class="rede-linha rede-linha-4"/>
 
-                <circle cx="210" cy="150" r="34" fill="var(--laranja-forte)" class="rede-central"/>
-                <text x="210" y="155" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#fff">AESTUS</text>
+                <!-- No centro da rede, o símbolo da logo da Aestus. -->
+                <image href="img/logo-aestus-simbolo.png" x="172" y="112" width="76" height="76" class="rede-central"/>
 
                 <circle cx="210" cy="55" r="24" fill="var(--laranja-claro)" stroke="var(--laranja-forte)" stroke-width="3" class="rede-no"/>
                 <text x="210" y="59" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="8" font-weight="700" fill="var(--laranja-forte)">JOVEM</text>
@@ -93,13 +130,16 @@
         </div>
     </div>
 
+    <!-- ============ QUEM SOMOS ============
+         A classe "reveal" faz a seção aparecer suavemente ao rolar. -->
     <section id="sobre" class="reveal">
         <h2 class="section-title">Quem Somos</h2>
         <p class="texto-centralizado">
             Nascida no Colégio Cruzeiro do Sul (São Miguel Paulista), a <strong>Aestus</strong> é uma organização criada por jovens, para gerar impacto social por meio da tecnologia. Em vez de um único produto, a Aestus funciona como uma frente de projetos: cada iniciativa nasce para resolver um problema social específico, sempre com tecnologia como ferramenta e os Objetivos de Desenvolvimento Sustentável da ONU como referência.
         </p>
     </section>
-
+    <!-- ============ PROJETOS ============
+         Cada projeto é um card. Para adicionar um novo, copie um card e troque o texto. -->
     <section id="projetos" class="secao-destaque reveal">
         <h2 class="section-title">Nossos Projetos</h2>
         <p class="texto-centralizado">
@@ -109,9 +149,10 @@
             <div class="card card-projeto">
                 <span class="projeto-status ativo">Projeto ativo</span>
                 <h3>JovemConnect</h3>
-                <p>Plataforma que conecta jovens em busca da primeira oportunidade profissional a empresas parceiras, com apoio na criação de currículo e preparação para processos seletivos.</p>
-                <a href="https://localhost/" target="_blank" class="link-projeto">Acessar projeto ↗</a>
+                <p>Plataforma que conecta jovens aprendizes a empresas que valorizam o aprendizado. Usa inteligência artificial para calcular a compatibilidade entre o perfil do jovem e a vaga, analisa o currículo e oferece filtros por área e localização, simplificando o Programa Jovem Aprendiz.</p>
+                <a href="http://localhost/JovemConnect/index.php" target="_blank" rel="noopener" class="link-projeto">Acessar projeto ↗</a>
             </div>
+            <!-- Card "futuro": deixado mais claro pelo CSS para indicar que ainda está em desenvolvimento. -->
             <div class="card card-projeto card-projeto-futuro">
                 <span class="projeto-status futuro">Em desenvolvimento</span>
                 <h3>Novo projeto</h3>
@@ -120,6 +161,7 @@
         </div>
     </section>
 
+    <!-- ============ ODS: o compromisso com a Agenda 2030 da ONU ============ -->
     <section id="ods" class="reveal">
         <h2 class="section-title">Nosso Compromisso com os ODS</h2>
         <p class="texto-centralizado">
@@ -129,6 +171,8 @@
             Na Aestus, os ODS não são um selo institucional: são o ponto de partida de cada projeto. Antes de desenvolver qualquer solução, perguntamos a qual desses 17 objetivos ela responde — e é esse objetivo que guia as decisões do time até a entrega final.
         </p>
 
+        <!-- Os 17 ODS em quadradinhos numerados. Os que têm a classe "destaque" (8 e 9)
+             ficam laranja: são os que o JovemConnect atende. Para mudar, troque a classe de lugar. -->
         <div class="ods-mapa" role="list" aria-label="Os 17 Objetivos de Desenvolvimento Sustentável da ONU">
             <span class="ods-item" role="listitem">1</span>
             <span class="ods-item" role="listitem">2</span>
@@ -137,8 +181,8 @@
             <span class="ods-item" role="listitem">5</span>
             <span class="ods-item" role="listitem">6</span>
             <span class="ods-item" role="listitem">7</span>
-            <span class="ods-item" role="listitem">8</span>
-            <span class="ods-item" role="listitem">9</span>
+            <span class="ods-item destaque" role="listitem" title="ODS 8 — Trabalho decente e crescimento econômico">8</span>
+            <span class="ods-item destaque" role="listitem" title="ODS 9 — Indústria, inovação e infraestrutura">9</span>
             <span class="ods-item" role="listitem">10</span>
             <span class="ods-item" role="listitem">11</span>
             <span class="ods-item" role="listitem">12</span>
@@ -148,9 +192,10 @@
             <span class="ods-item" role="listitem">16</span>
             <span class="ods-item" role="listitem">17</span>
         </div>
-        <p class="ods-mapa-legenda">Cada projeto Aestus se conecta a um ou mais desses 17 objetivos.</p>
+        <p class="ods-mapa-legenda">Cada projeto Aestus se conecta a um ou mais desses 17 objetivos. Em destaque, os ODS 8 (Trabalho decente e crescimento econômico) e 9 (Indústria, inovação e infraestrutura), atendidos pelo JovemConnect.</p>
     </section>
 
+    <!-- ============ IDENTIDADE: objetivo, missão, visão e valores ============ -->
     <section id="proposito" class="secao-destaque reveal">
         <h2 class="section-title">Nossa Identidade</h2>
         <div class="grid-cards">
@@ -158,26 +203,19 @@
                 <div class="card-icone" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg>
                 </div>
-                <h3>Nosso Objetivo</h3>
-                <p>Criar soluções tecnológicas para problemas sociais reais, usando os Objetivos de Desenvolvimento Sustentável da ONU como bússola para escolher onde e como agir.</p>
-            </div>
-            <div class="card">
-                <div class="card-icone" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 7v5c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V7l-8-4Z"/></svg>
-                </div>
-                <h3>Nossa Missão</h3>
+                <h3>Nossa Missã</h3>
                 <p>Mobilizar talento jovem para transformar causas sociais em projetos concretos, entregando tecnologia que gera impacto mensurável para as comunidades que atende.</p>
             </div>
             <div class="card">
                 <div class="card-icone" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 7v5c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V7l-8-4Z"/></svg>
                 </div>
                 <h3>Nossa Visão</h3>
                 <p>Ser reconhecida como uma organização de referência em inovação social liderada por jovens, com um portfólio de projetos que cobre múltiplos Objetivos de Desenvolvimento Sustentável.</p>
             </div>
             <div class="card">
                 <div class="card-icone" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.828 13.07A3 3 0 0 1 12 8.764a3 3 0 0 1 5.004 2.224 3 3 0 0 1-.832 2.083l-3.447 3.62a1 1 0 0 1-1.45-.001z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                 </div>
                 <h3>Nossos Valores</h3>
                 <p>Nossos valores promovem a inclusão e a igualdade, garantindo acessibilidade para todos e incentivando a inovação para construir um futuro mais justo, diverso e transformador.</p>
@@ -185,16 +223,97 @@
         </div>
     </section>
 
+    <!-- ============ RODAPÉ: contato e créditos da equipe ============ -->
     <footer>
-        <h2>AESTUS</h2>
+        <!-- No rodapé laranja vai só o nome, em branco (versão negativa da logo). -->
+        <h2 class="footer-logo"><img src="img/logo-aestus-branco.png" alt="Aestus" width="430" height="108"></h2>
         <p>Criando oportunidades. Transformando futuros.</p>
+        <!-- Links legais: os mesmos 4 do rodapé do JovemConnect, para os dois sites ficarem alinhados. -->
+        <nav class="footer-links" aria-label="Links do rodapé">
+            <a href="termos.html">Termos de Uso</a>
+            <a href="privacidade.html">Política de Privacidade</a>
+            <a href="acessibilidade.html">Acessibilidade</a>
+            <a href="mailto:startupaestus@gmail.com">Contato</a>
+        </nav>
+        <!-- O id="contato" é o destino do link "Contato" do menu. -->
+        <p id="contato"><a class="link-contato" href="mailto:startupaestus@gmail.com">✉ startupaestus@gmail.com</a></p>
+        <!-- Botão do Instagram da Aestus: abre o perfil em uma nova aba (target="_blank").
+             O rel="noopener noreferrer" impede a nova aba de controlar esta página. -->
+        <p class="footer-social">
+            <a class="btn-instagram" href="https://www.instagram.com/aestus_startup/" target="_blank" rel="noopener noreferrer" aria-label="Siga a Aestus no Instagram (abre em nova aba)">Siga a Aestus no Instagram ↗</a>
+        </p>
         <div class="creditos">
             <p><strong>Desenvolvido por:</strong> Cauã Aguiar, Enzo Sipriano, Esequiel Wolff, Gabriel Sassati, Leonardo de Matos, Markus Pereira, Paola Restiffe, Renato Braga e Vitor Hugo.</p>
             <p>Trabalho de Conclusão de Curso — Colégio Cruzeiro do Sul | São Miguel Paulista, SP</p>
+            <p>© 2026 Aestus. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <script src="darkmode.js"></script>
+    <!-- ============ ACESSIBILIDADE ============
+         Botão flutuante + painel. A lógica está no acessibilidade.js e o visual no CSS.
+         O painel começa com "hidden" (escondido) até clicarem no botão. -->
+    <button id="a11y-botao" class="a11y-botao" type="button" aria-label="Abrir opções de acessibilidade" aria-expanded="false" aria-controls="a11y-painel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"/><path d="M5 8.5l7 1.5 7-1.5M12 10v4.5M9 21l3-6.5 3 6.5"/></svg>
+    </button>
+
+    <div id="a11y-painel" class="a11y-painel" role="dialog" aria-label="Opções de acessibilidade" hidden>
+        <div class="a11y-topo">
+            <h2>Acessibilidade</h2>
+            <button id="a11y-fechar" class="a11y-fechar" type="button" aria-label="Fechar">✕</button>
+        </div>
+
+        <div class="a11y-linha">
+            <span>Tamanho do texto</span>
+            <div class="a11y-fonte">
+                <button id="a11y-menos" type="button" aria-label="Diminuir texto">A−</button>
+                <output id="a11y-fonte-valor" aria-live="polite">100%</output>
+                <button id="a11y-mais" type="button" aria-label="Aumentar texto">A+</button>
+            </div>
+        </div>
+
+        <!-- Cada interruptor tem data-a11y="nome-da-opção": é assim que o JS sabe qual
+             opção ele controla, sem precisar de um código para cada um. -->
+        <label class="a11y-linha">Alto contraste
+            <input type="checkbox" data-a11y="contraste"><span class="a11y-chave"></span>
+        </label>
+        <label class="a11y-linha">Tons de cinza
+            <input type="checkbox" data-a11y="cinza"><span class="a11y-chave"></span>
+        </label>
+        <label class="a11y-linha">Fonte para dislexia
+            <input type="checkbox" data-a11y="dislexia"><span class="a11y-chave"></span>
+        </label>
+        <label class="a11y-linha">Destacar links
+            <input type="checkbox" data-a11y="links"><span class="a11y-chave"></span>
+        </label>
+        <label class="a11y-linha">Parar animações
+            <input type="checkbox" data-a11y="animacoes"><span class="a11y-chave"></span>
+        </label>
+
+        <div class="a11y-linha a11y-coluna">
+            <label for="a11y-daltonismo">Filtro de daltonismo</label>
+            <select id="a11y-daltonismo">
+                <option value="">Nenhum</option>
+                <option value="protanopia">Protanopia</option>
+                <option value="deuteranopia">Deuteranopia</option>
+                <option value="tritanopia">Tritanopia</option>
+            </select>
+        </div>
+
+        <button id="a11y-reset" class="a11y-reset" type="button">Restaurar padrão</button>
+    </div>
+
+    <!-- Filtros de daltonismo: um SVG invisível (0x0) que só guarda as "receitas" de cor.
+         O JS os ativa com filter: url(#a11y-...). Cada feColorMatrix recalcula as cores
+         para simular/compensar o tipo de daltonismo. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <filter id="a11y-protanopia"><feColorMatrix type="matrix" values="0.567 0.433 0 0 0  0.558 0.442 0 0 0  0 0.242 0.758 0 0  0 0 0 1 0"/></filter>
+            <filter id="a11y-deuteranopia"><feColorMatrix type="matrix" values="0.625 0.375 0 0 0  0.7 0.3 0 0 0  0 0.3 0.7 0 0  0 0 0 1 0"/></filter>
+            <filter id="a11y-tritanopia"><feColorMatrix type="matrix" values="0.95 0.05 0 0 0  0 0.433 0.567 0 0  0 0.475 0.525 0 0  0 0 0 1 0"/></filter>
+        </defs>
+    </svg>
+
+    <!-- script.js fica no fim do <body> para rodar quando todo o HTML já existe. -->
     <script src="script.js"></script>
 </body>
 </html>

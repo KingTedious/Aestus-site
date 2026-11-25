@@ -1,4 +1,7 @@
 /* --- RESET E ESTILOS BASE --- */
+/* Zera as margens e paddings que cada navegador coloca por padrão e faz o
+   tamanho dos elementos incluir borda e espaçamento (box-sizing). Sem isso,
+   o layout fica diferente de navegador para navegador e as contas de largura dão errado. */
 * {
     margin: 0;
     padding: 0;
@@ -7,12 +10,16 @@
     scroll-behavior: smooth;
 }
 
+/* Títulos e logo usam a fonte Space Grotesk; o resto usa Inter (definida acima). */
 h1, h2, h3, .logo {
     font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
 }
 
+/* VARIÁVEIS DE COR: definidas uma vez e usadas no site todo com var(--nome).
+   Vantagem: para mudar a cor da marca ou criar um tema escuro, basta trocar
+   os valores aqui em vez de caçar a cor em cada regra. */
 :root {
-    --laranja-forte: #e65c00;
+    --laranja-forte: #e24908; /* mesmo laranja do nome na logo */
     --laranja-medio: #ff7f2a;
     --laranja-claro: #fff0e6;
     --bg-principal: #ffffff;
@@ -24,6 +31,8 @@ h1, h2, h3, .logo {
     --sombra: rgba(50, 30, 10, 0.08);
 }
 
+/* Fundo e cor do texto vêm das variáveis. O transition suaviza a troca de tema,
+   e overflow-x esconde qualquer rolagem horizontal indesejada. */
 body {
     background-color: var(--bg-principal);
     color: var(--texto-principal);
@@ -32,12 +41,16 @@ body {
     overflow-x: hidden;
 }
 
+/* Contorno laranja quando se navega pelo teclado (Tab). Quem usa mouse não vê,
+   mas quem depende do teclado sabe onde está. */
 a:focus-visible, button:focus-visible {
     outline: 2px solid var(--laranja-forte);
     outline-offset: 3px;
 }
 
 /* --- HEADER E NAVEGAÇÃO --- */
+/* position: fixed mantém o cabeçalho sempre no topo, mesmo rolando a página.
+   z-index alto garante que ele fique por cima do conteúdo. */
 header {
     background-color: var(--bg-principal);
     box-shadow: 0 2px 10px var(--sombra);
@@ -48,6 +61,7 @@ header {
     transition: background-color 0.3s ease;
 }
 
+/* Flexbox: logo à esquerda e menu à direita. O max-width centraliza em telas grandes. */
 nav {
     display: flex;
     justify-content: space-between;
@@ -58,14 +72,36 @@ nav {
     position: relative;
 }
 
+/* LOGO: imagem com o símbolo + nome. A altura fica numa variável para ser fácil
+   de ajustar (no celular ela diminui, lá na seção de responsividade). */
 .logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--laranja-forte);
+    --altura-logo: 52px;
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    letter-spacing: 1px;
 }
 
+.logo img {
+    display: block;
+    height: var(--altura-logo);
+    width: auto;
+}
+
+/* Duas versões da logo: nome laranja no tema claro e nome branco no tema escuro
+   e no alto contraste, onde o laranja fino ficaria apagado sobre o fundo escuro. */
+.logo .logo-escuro,
+html.dark-mode .logo .logo-claro,
+html.a11y-contraste .logo .logo-claro {
+    display: none;
+}
+
+html.dark-mode .logo .logo-escuro,
+html.a11y-contraste .logo .logo-escuro {
+    display: block;
+}
+
+/* Os links do menu ficam lado a lado (flex). No celular, este bloco é reescrito
+   lá embaixo, na seção de responsividade. */
 .menu {
     display: flex;
     align-items: center;
@@ -84,6 +120,7 @@ nav {
 }
 
 /* --- BOTÃO HAMBÚRGUER (MOBILE) --- */
+/* O hambúrguer fica escondido no desktop (display: none) e só aparece no celular. */
 .btn-menu {
     display: none;
     background: transparent;
@@ -103,6 +140,7 @@ nav {
 }
 
 /* --- BOTÃO DE MUDAR TEMA --- */
+/* Botão de tema: contorno laranja e fundo transparente; no hover, preenche. */
 .btn-tema {
     background: transparent;
     border: 2px solid var(--laranja-medio);
@@ -121,6 +159,8 @@ nav {
 }
 
 /* --- BOTÃO JOVEM CONNECT --- */
+/* Botão de destaque do menu. O !important na cor garante texto branco mesmo
+   com a regra .menu a (mais genérica) tentando pintar de outra cor. */
 .btn-jovem-connect {
     background-color: var(--laranja-forte);
     color: #ffffff !important;
@@ -135,6 +175,9 @@ nav {
 }
 
 /* --- SEÇÃO HERO --- */
+/* Seção principal com degradê suave. flex-wrap deixa a ilustração cair para baixo
+   do texto quando a tela é estreita. O padding de cima é grande para não ficar
+   escondido atrás do cabeçalho fixo. */
 .hero {
     background: linear-gradient(135deg, var(--laranja-claro) 0%, var(--bg-principal) 100%);
     padding: 150px 5% 80px;
@@ -184,6 +227,7 @@ nav {
     margin-bottom: 44px;
 }
 
+/* Botão de chamada principal (CTA). Sobe 3px no hover para dar sensação de clique. */
 .btn-principal {
     display: inline-block;
     background-color: var(--laranja-medio);
@@ -261,6 +305,9 @@ nav {
 }
 
 /* --- ILUSTRAÇÃO DE REDE (HERO) --- */
+/* ANIMAÇÃO DA REDE: cada linha começa "apagada" (dasharray = dashoffset) e o
+   keyframe vai zerando o dashoffset, o que dá o efeito de a linha ser desenhada.
+   Os delays escalonam a entrada de uma por uma. */
 .rede-linha {
     stroke-dasharray: 200;
     stroke-dashoffset: 200;
@@ -289,12 +336,14 @@ nav {
 }
 
 /* --- SEÇÕES E CARDS --- */
+/* Espaçamento padrão de todas as seções, centralizadas com largura máxima. */
 section {
     padding: 80px 5%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
+/* Seções com fundo diferente, para alternar e dar ritmo à rolagem. */
 .secao-destaque {
     background-color: var(--bg-secundario);
     max-width: 100%;
@@ -307,14 +356,37 @@ section {
     margin-bottom: 40px;
 }
 
+/* Bloco de texto centralizado na página (largura máxima + margin auto).
+   O texto dentro dele fica justificado, pela regra logo abaixo. */
 .texto-centralizado {
-    text-align: center;
     max-width: 800px;
     margin: 0 auto;
     font-size: 1.1em;
     color: var(--texto-suave);
 }
 
+/* Dois parágrafos seguidos ganham um respiro entre eles. */
+.texto-centralizado + .texto-centralizado {
+    margin-top: 16px;
+}
+
+/* --- TEXTO JUSTIFICADO --- */
+/* Os parágrafos longos ficam justificados (alinhados dos dois lados). Títulos,
+   botões, legendas e rodapé continuam como estavam. O hyphens quebra palavras
+   longas com hífen, seguindo o português (lang="pt-BR" no <html>), para não
+   abrir buracos grandes entre as palavras, principalmente no celular. */
+.hero p,
+.texto-centralizado,
+.card p,
+.legal-page p,
+.legal-page li {
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+/* Grid responsivo: coloca quantas colunas de pelo menos 280px couberem.
+   Sem media query, ele se ajusta sozinho (4, 2 ou 1 coluna). */
 .grid-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -323,6 +395,8 @@ section {
     margin: 0 auto;
 }
 
+/* Visual padrão dos cards: fundo da variável (muda no tema escuro), sombra suave
+   e uma faixa laranja no topo. Sobem um pouco ao passar o mouse. */
 .card {
     background-color: var(--card-bg);
     padding: 30px;
@@ -369,6 +443,7 @@ section {
     align-items: flex-start;
 }
 
+/* Card do projeto "em desenvolvimento": mais apagado, para não competir com o ativo. */
 .card-projeto-futuro {
     border-top-color: var(--borda);
     opacity: 0.75;
@@ -426,6 +501,7 @@ section {
 }
 
 /* --- MAPA DOS 17 ODS --- */
+/* Quadradinhos dos 17 ODS, quebrando linha e centralizados. */
 .ods-mapa {
     display: flex;
     flex-wrap: wrap;
@@ -449,6 +525,7 @@ section {
     border: 1px solid var(--borda);
 }
 
+/* ODS atendidos pelo JovemConnect: laranja e levemente maiores. */
 .ods-item.destaque {
     background-color: var(--laranja-forte);
     color: #fff;
@@ -470,6 +547,7 @@ section {
 }
 
 /* --- RODAPÉ --- */
+/* Rodapé laranja com texto branco. */
 footer {
     background-color: var(--laranja-forte);
     color: #ffffff;
@@ -483,6 +561,14 @@ footer p {
     font-size: 0.95em;
 }
 
+/* Logo do rodapé: só o nome, em branco. */
+.footer-logo img {
+    display: block;
+    height: 36px;
+    width: auto;
+    margin: 0 auto 10px;
+}
+
 .creditos {
     font-size: 0.85em;
     opacity: 0.9;
@@ -490,7 +576,18 @@ footer p {
     line-height: 1.8;
 }
 
+.link-contato {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.link-contato:hover { border-bottom-color: #ffffff; }
+
 /* --- ANIMAÇÃO DE ENTRADA AO ROLAR --- */
+/* Estado inicial das seções que aparecem ao rolar: invisíveis e 24px abaixo.
+   Quando o JS adiciona .em-vista, elas sobem e aparecem (transition). */
 .reveal {
     opacity: 0;
     transform: translateY(24px);
@@ -502,6 +599,8 @@ footer p {
     transform: translateY(0);
 }
 
+/* Respeita quem configurou o sistema para reduzir movimento (ex.: por enjoo ou
+   sensibilidade): desliga animações e mostra tudo direto. */
 @media (prefers-reduced-motion: reduce) {
     .reveal, .rede-linha, .rede-central, .rede-no, .hero-ilustracao text {
         animation: none !important;
@@ -513,7 +612,10 @@ footer p {
 }
 
 /* --- REGRAS DO MODO ESCURO (DARK MODE) --- */
-body.dark-mode {
+/* MODO ESCURO: em vez de repetir todas as regras, só trocamos o valor das
+   variáveis de cor. Todo o site muda junto. A classe fica no <html> para ser
+   aplicada cedo pelo darkmode.js. */
+html.dark-mode {
     --bg-principal: #121212;
     --bg-secundario: #1a1a1a;
     --card-bg: #1e1e1e;
@@ -523,17 +625,295 @@ body.dark-mode {
     --sombra: rgba(0, 0, 0, 0.4);
 }
 
-body.dark-mode .hero {
+html.dark-mode .hero {
     background: linear-gradient(135deg, #2b1305 0%, #121212 100%);
 }
 
-body.dark-mode .btn-tema {
+html.dark-mode .btn-tema {
     border-color: var(--laranja-forte);
     color: var(--laranja-medio);
 }
 
+
+/* --- ACESSIBILIDADE --- */
+/* Botão redondo flutuante, fixo no canto da tela. z-index maior que o do cabeçalho. */
+.a11y-botao {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1100;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--laranja-forte);
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.a11y-botao:hover { transform: scale(1.08); }
+.a11y-botao svg { width: 28px; height: 28px; }
+
+/* Janela do painel, acima do botão. max-height + overflow permitem rolar o painel
+   em telas baixas, em vez de cortar as opções. */
+.a11y-painel {
+    position: fixed;
+    right: 20px;
+    bottom: 84px;
+    z-index: 1100;
+    width: 300px;
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+    background-color: var(--card-bg);
+    color: var(--texto-principal);
+    border: 1px solid var(--borda);
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 10px 30px var(--sombra);
+}
+
+.a11y-painel[hidden] { display: none; }
+
+.a11y-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.a11y-topo h2 { font-size: 1.1em; color: var(--laranja-forte); }
+
+.a11y-fechar {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 1.1em;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+.a11y-linha {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--borda);
+    font-size: 0.92em;
+    cursor: pointer;
+}
+
+.a11y-coluna { flex-direction: column; align-items: stretch; cursor: default; }
+
+.a11y-painel select {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid var(--borda);
+    background-color: var(--bg-secundario);
+    color: var(--texto-principal);
+}
+
+.a11y-fonte { display: flex; align-items: center; gap: 8px; }
+
+.a11y-fonte button, .a11y-reset {
+    background: transparent;
+    border: 2px solid var(--laranja-medio);
+    color: var(--laranja-forte);
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.a11y-fonte button:hover, .a11y-reset:hover { background-color: var(--laranja-medio); color: #ffffff; }
+.a11y-fonte output { min-width: 44px; text-align: center; font-weight: 600; }
+.a11y-reset { width: 100%; margin-top: 14px; padding: 9px; }
+
+.a11y-linha input[type="checkbox"] { position: absolute; opacity: 0; pointer-events: none; }
+
+/* Interruptor (liga/desliga) desenhado só com CSS: o checkbox real fica invisível
+   e este elemento ao lado mostra o estado. Assim continua acessível por teclado. */
+.a11y-chave {
+    flex-shrink: 0;
+    width: 42px;
+    height: 24px;
+    border-radius: 12px;
+    background-color: var(--borda);
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+
+.a11y-chave::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    transition: transform 0.2s ease;
+}
+
+.a11y-linha input:checked + .a11y-chave { background-color: var(--laranja-forte); }
+.a11y-linha input:checked + .a11y-chave::after { transform: translateX(18px); }
+.a11y-linha input:focus-visible + .a11y-chave { outline: 2px solid var(--laranja-forte); outline-offset: 2px; }
+
+/* Modos ativados pelo painel: estes estilos só valem quando o JS coloca a
+   classe correspondente no <html>. */
+html.a11y-dislexia *, html.a11y-dislexia h1, html.a11y-dislexia h2, html.a11y-dislexia h3 {
+    font-family: 'OpenDyslexic', 'Comic Sans MS', 'Comic Neue', cursive !important;
+    letter-spacing: 0.04em;
+    word-spacing: 0.12em;
+}
+
+/* Com a fonte para dislexia, o texto volta a ficar alinhado à esquerda: os espaços
+   irregulares do texto justificado atrapalham a leitura de quem tem dislexia. */
+html.a11y-dislexia .hero p,
+html.a11y-dislexia .texto-centralizado,
+html.a11y-dislexia .card p,
+html.a11y-dislexia .legal-page p,
+html.a11y-dislexia .legal-page li {
+    text-align: left;
+    -webkit-hyphens: manual;
+    hyphens: manual;
+}
+
+html.a11y-links a:not(.btn-principal):not(.btn-jovem-connect):not(.logo) {
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+}
+
+html.a11y-sem-animacao *, html.a11y-sem-animacao *::before, html.a11y-sem-animacao *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+}
+
+html.a11y-sem-animacao .reveal,
+html.a11y-sem-animacao .rede-linha,
+html.a11y-sem-animacao .rede-central,
+html.a11y-sem-animacao .rede-no,
+html.a11y-sem-animacao .hero-ilustracao text {
+    opacity: 1 !important;
+    transform: none !important;
+    stroke-dashoffset: 0 !important;
+}
+
+/* Alto contraste: troca as variáveis por preto, branco e amarelo (combinação de
+   contraste máximo). As regras seguintes ajustam o que as variáveis sozinhas
+   não resolvem (texto de botões, rodapé, bordas dos cards). */
+html.a11y-contraste {
+    --laranja-forte: #ffd400;
+    --laranja-medio: #ffd400;
+    --laranja-claro: #000000;
+    --bg-principal: #000000;
+    --bg-secundario: #000000;
+    --card-bg: #000000;
+    --texto-principal: #ffffff;
+    --texto-suave: #ffffff;
+    --borda: #ffffff;
+    --sombra: transparent;
+}
+
+html.a11y-contraste .hero { background: #000000; }
+html.a11y-contraste .card { border: 2px solid #ffffff; border-top: 5px solid #ffd400; }
+html.a11y-contraste .btn-jovem-connect,
+html.a11y-contraste .btn-principal,
+html.a11y-contraste .a11y-botao { color: #000000 !important; }
+html.a11y-contraste .btn-tema:hover,
+html.a11y-contraste .btn-secundario:hover,
+html.a11y-contraste .a11y-fonte button:hover,
+html.a11y-contraste .a11y-reset:hover { color: #000000; background-color: #ffd400; }
+html.a11y-contraste .ods-item.destaque { color: #000000; }
+html.a11y-contraste footer { background-color: #000000; color: #ffffff; border-top: 3px solid #ffd400; }
+html.a11y-contraste .link-contato { color: #ffd400; border-bottom-color: #ffd400; }
+html.a11y-contraste .pilar-icone, html.a11y-contraste .card-icone { border: 1px solid #ffffff; }
+html.a11y-contraste a { text-decoration: underline; }
+
+
+/* --- RODAPÉ: LINKS LEGAIS --- */
+/* Mesma fileira de links do rodapé do JovemConnect (Termos, Privacidade, Acessibilidade, Contato). */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 28px;
+    margin: 18px 0 14px;
+}
+
+.footer-links a {
+    color: #ffffff;
+    font-size: 0.9em;
+    text-decoration: none;
+    opacity: 0.95;
+}
+
+.footer-links a:hover { text-decoration: underline; }
+
+/* --- RODAPÉ: BOTÃO DO INSTAGRAM --- */
+/* Botão branco sobre o rodapé laranja, para se destacar. Sobe 3px no hover,
+   igual ao botão principal do site. */
+.footer-social {
+    margin: 18px 0 8px;
+}
+
+.btn-instagram {
+    display: inline-block;
+    background-color: #ffffff;
+    color: var(--laranja-forte);
+    padding: 10px 24px;
+    border: 2px solid #ffffff;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.btn-instagram:hover {
+    transform: translateY(-3px);
+}
+
+/* O contorno de foco padrão é laranja e sumiria no rodapé laranja; aqui ele fica branco. */
+footer a:focus-visible {
+    outline-color: #ffffff;
+}
+
+/* --- PÁGINAS LEGAIS (termos, privacidade, acessibilidade) --- */
+.legal-page { max-width: 780px; margin: 0 auto; padding: 120px 5% 40px; }
+.legal-page h1 { color: var(--laranja-forte); margin-bottom: 8px; }
+.legal-page .legal-sub { color: var(--texto-suave); margin-bottom: 4px; }
+.legal-page .legal-data { color: var(--texto-suave); font-size: 0.85em; margin-bottom: 28px; }
+.legal-page h2 { font-size: 1.15em; margin: 26px 0 10px; color: var(--laranja-forte); }
+.legal-page p, .legal-page li { line-height: 1.75; margin-bottom: 10px; }
+.legal-page ul { padding-left: 22px; margin-bottom: 10px; }
+.legal-aviso {
+    margin-top: 32px;
+    padding: 14px 16px;
+    font-size: 0.85em;
+    color: var(--texto-suave);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+}
+
+html.a11y-contraste .footer-links a { color: #ffd400; text-decoration: underline; }
+html.a11y-contraste .btn-instagram { background-color: #000000; color: #ffd400; border-color: #ffd400; box-shadow: none; }
+
 /* --- RESPONSIVIDADE PARA CELULARES --- */
+/* A partir daqui: ajustes para telas de até 860px (celulares e tablets pequenos). */
 @media (max-width: 860px) {
+    .logo {
+        --altura-logo: 44px;
+    }
+
     .btn-menu {
         display: flex;
     }
@@ -553,8 +933,12 @@ body.dark-mode .btn-tema {
         transition: max-height 0.35s ease;
     }
 
+    /* O menu vira uma lista que "desliza" para baixo: fechado tem max-height 0,
+       aberto (classe adicionada pelo JS) libera a altura. O limite é a altura da
+       tela menos o cabeçalho; se a tela for baixa, o menu rola por dentro. */
     .menu.aberto {
-        max-height: 400px;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
     }
 
     .menu a, .menu button {
@@ -593,7 +977,7 @@ body.dark-mode .btn-tema {
         margin-right: auto;
     }
 
-    .hero-ctas, .hero-stats {
+    .hero-ctas {
         justify-content: center;
     }
 
@@ -605,4 +989,9 @@ body.dark-mode .btn-tema {
         order: -1;
         max-width: 280px;
     }
+}
+
+#projetos > p.texto-centralizado {
+    position: relative;
+    top: -20px;
 }

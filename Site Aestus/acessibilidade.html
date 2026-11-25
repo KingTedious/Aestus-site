@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Acessibilidade | Aestus</title>
+    <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="stylesheet" href="style.css">
+    <!-- tema e acessibilidade salvos são aplicados antes de a página aparecer (sem "piscar") -->
+    <script src="darkmode.js"></script>
+    <script src="acessibilidade.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img class="logo-claro" src="img/logo-aestus.png" alt="Aestus — voltar ao site" width="437" height="168">
+                <img class="logo-escuro" src="img/logo-aestus-escuro.png" alt="Aestus — voltar ao site" width="437" height="168">
+            </a>
+            <div class="menu" id="menu" style="max-height:none;position:static;flex-direction:row;background:none;box-shadow:none;padding:0;">
+                <a href="index.html">← Voltar ao site</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="legal-page">
+        <h1>Acessibilidade</h1>
+        <p class="legal-sub">Nosso compromisso e os recursos disponíveis.</p>
+        <p class="legal-data">Última atualização: 4 de outubro de 2026</p>
+        <h2>Nosso compromisso</h2>
+        <p>A Aestus quer que jovens, empresas e visitantes usem seus sites com autonomia, independentemente de deficiência, idade ou dispositivo. Seguimos como referência as boas práticas das WCAG, mas o trabalho é contínuo e ainda há pontos a melhorar.</p>
+        <h2>Painel de acessibilidade</h2>
+        <p>Em todas as páginas há um botão de acessibilidade no canto da tela. Ele oferece:</p>
+        <ul>
+            <li>tamanho do texto: aumentar ou diminuir;</li>
+            <li>alto contraste;</li>
+            <li>tons de cinza;</li>
+            <li>fonte para dislexia (que também deixa o texto alinhado à esquerda, sem justificar);</li>
+            <li>destaque de links;</li>
+            <li>parar animações;</li>
+            <li>filtros para protanopia, deuteranopia e tritanopia;</li>
+            <li>restaurar o padrão.</li>
+        </ul>
+        <p>As escolhas ficam salvas no seu navegador e valem nas próximas visitas.</p>
+        <h2>Navegação pelo teclado</h2>
+        <p>Todo o conteúdo pode ser acessado com a tecla Tab. O painel de acessibilidade fecha com a tecla Esc, e o foco volta para o botão que o abriu.</p>
+        <h2>Limitações conhecidas</h2>
+        <p>A fonte para dislexia usa a OpenDyslexic quando instalada no aparelho e, se não houver, a Comic Sans. Alguns conteúdos e imagens ainda podem não ter descrição alternativa completa.</p>
+        <h2>Fale com a gente</h2>
+        <p>Encontrou uma barreira ou tem uma sugestão? Escreva para startupaestus@gmail.com contando a página e o que aconteceu.</p>
+        <p class="legal-aviso">Modelo informativo elaborado pela equipe do projeto. Recomendamos revisão por um profissional jurídico antes de uso em produção.</p>
+    </main>
+
+    <footer>
+        <h2 class="footer-logo"><img src="img/logo-aestus-branco.png" alt="Aestus" width="430" height="108"></h2>
+        <p>Criando oportunidades. Transformando futuros.</p>
+        <nav class="footer-links" aria-label="Links do rodapé">
+            <a href="termos.html">Termos de Uso</a>
+            <a href="privacidade.html">Política de Privacidade</a>
+            <a href="acessibilidade.html">Acessibilidade</a>
+            <a href="mailto:startupaestus@gmail.com">Contato</a>
+        </nav>
+        <p><a class="link-contato" href="mailto:startupaestus@gmail.com">✉ startupaestus@gmail.com</a></p>
+        <p class="footer-social">
+            <a class="btn-instagram" href="https://www.instagram.com/aestus_startup/" target="_blank" rel="noopener noreferrer" aria-label="Siga a Aestus no Instagram (abre em nova aba)">Siga a Aestus no Instagram ↗</a>
+        </p>
+        <div class="creditos">
+            <p>Trabalho de Conclusão de Curso — Colégio Cruzeiro do Sul | São Miguel Paulista, SP</p>
+            <p>© 2026 Aestus. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Painel de acessibilidade (o mesmo do site principal) -->
+    <button id="a11y-botao" class="a11y-botao" type="button" aria-label="Abrir opções de acessibilidade" aria-expanded="false" aria-controls="a11y-painel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"/><path d="M5 8.5l7 1.5 7-1.5M12 10v4.5M9 21l3-6.5 3 6.5"/></svg>
+    </button>
+    <div id="a11y-painel" class="a11y-painel" role="dialog" aria-label="Opções de acessibilidade" hidden>
+        <div class="a11y-topo">
+            <h2>Acessibilidade</h2>
+            <button id="a11y-fechar" class="a11y-fechar" type="button" aria-label="Fechar">✕</button>
+        </div>
+
+        <div class="a11y-linha">
+            <span>Tamanho do texto</span>
+            <div class="a11y-fonte">
+                <button id="a11y-menos" type="button" aria-label="Diminuir texto">A−</button>
+                <output id="a11y-fonte-valor" aria-live="polite">100%</output>
+                <button id="a11y-mais" type="button" aria-label="Aumentar texto">A+</button>
+            </div>
+        </div>
+
+        <!-- Cada interruptor tem data-a11y="nome-da-opção": é assim que o JS sabe qual
+             opção ele controla, sem precisar de um código para cada um. -->
+        <label class="a11y-linha">Alto contraste
+            <input type="checkbox" data-a11y="contraste"><span class="a11y-chave"></span>
+        </label>
+        <label class="a11y-linha">Tons de cinza
+            <input type="checkbox" data-a11y="cinza"><span class="a11y-chave"></span>
+        </label>
+        <label class="a11y-linha">Fonte para dislexia
+            <input type="checkbox" data-a11y="dislexia"><span class="a11y-chave"></span>
+        </label>
+        <label class="a11y-linha">Destacar links
+            <input type="checkbox" data-a11y="links"><span class="a11y-chave"></span>
+        </label>
+        <label class="a11y-linha">Parar animações
+            <input type="checkbox" data-a11y="animacoes"><span class="a11y-chave"></span>
+        </label>
+
+        <div class="a11y-linha a11y-coluna">
+            <label for="a11y-daltonismo">Filtro de daltonismo</label>
+            <select id="a11y-daltonismo">
+                <option value="">Nenhum</option>
+                <option value="protanopia">Protanopia</option>
+                <option value="deuteranopia">Deuteranopia</option>
+                <option value="tritanopia">Tritanopia</option>
+            </select>
+        </div>
+
+        <button id="a11y-reset" class="a11y-reset" type="button">Restaurar padrão</button>
+    </div>
+
+    <!-- Filtros de daltonismo: um SVG invisível (0x0) que só guarda as "receitas" de cor.
+         O JS os ativa com filter: url(#a11y-...). Cada feColorMatrix recalcula as cores
+         para simular/compensar o tipo de daltonismo. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <filter id="a11y-protanopia"><feColorMatrix type="matrix" values="0.567 0.433 0 0 0  0.558 0.442 0 0 0  0 0.242 0.758 0 0  0 0 0 1 0"/></filter>
+            <filter id="a11y-deuteranopia"><feColorMatrix type="matrix" values="0.625 0.375 0 0 0  0.7 0.3 0 0 0  0 0.3 0.7 0 0  0 0 0 1 0"/></filter>
+            <filter id="a11y-tritanopia"><feColorMatrix type="matrix" values="0.95 0.05 0 0 0  0 0.433 0.567 0 0  0 0.475 0.525 0 0  0 0 0 1 0"/></filter>
+        </defs>
+    </svg>
+</body>
+</html>
